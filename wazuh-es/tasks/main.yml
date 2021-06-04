@@ -1,0 +1,21 @@
+---
+- name: Install python-dns
+  package:
+    name: python-dns
+    state: latest # noqa package-latest
+
+- name: allow elasticsearch API traffic 9200/tcp
+  firewalld:
+    port: 9200/tcp
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: allow elasticsearch cluster traffic 9300-9400/tcp
+  firewalld:
+    port: 9300-9400/tcp
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled

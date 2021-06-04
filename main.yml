@@ -1,0 +1,11 @@
+---
+- hosts: all
+  roles: 
+    - role: oci-rsa-ansible-base
+      become: true
+    - role: wazuh-es
+      become: true
+    - role: geerlingguy.clamav
+      become: true
+    - role: wazuh-ansible/wazuh-ansible/roles/elastic-stack/ansible-elasticsearch
+      become: true
