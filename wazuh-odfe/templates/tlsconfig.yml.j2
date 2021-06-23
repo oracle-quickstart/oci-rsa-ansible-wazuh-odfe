@@ -1,0 +1,15 @@
+opendistro_security.ssl.transport.pemcert_filepath: {{ elasticsearch_node_name }}.pem
+opendistro_security.ssl.transport.pemkey_filepath: {{ elasticsearch_node_name }}.key
+opendistro_security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
+opendistro_security.ssl.transport.enforce_hostname_verification: false
+opendistro_security.ssl.transport.resolve_hostname: false
+opendistro_security.ssl.http.enabled: true
+opendistro_security.ssl.http.pemcert_filepath: {{ elasticsearch_node_name }}_http.pem
+opendistro_security.ssl.http.pemkey_filepath: {{ elasticsearch_node_name }}_http.key
+opendistro_security.ssl.http.pemtrustedcas_filepath: root-ca.pem
+opendistro_security.nodes_dn:
+{% for (key,value) in instances.items() %}
+- DC={{ domain_name }},O={{ domain_name }}\, Inc.,OU=Ops,CN={{ value.name }}.{{ domain_name }}
+{% endfor %}
+opendistro_security.authcz.admin_dn:
+- DC={{ domain_name }},O={{ domain_name }}\, Inc.,OU=Ops,CN=admin

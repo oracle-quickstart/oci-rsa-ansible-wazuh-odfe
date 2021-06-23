@@ -1,0 +1,40 @@
+---
+# vars file for oci-rsa-ansible-wazuh-es
+# Cluster Settings
+opendistro_version: 1.13.2
+
+single_node: false
+elasticsearch_node_name: '{{ ansible_fqdn }}'
+domain_name: 'wazuhsubnet.primaryvcn.oraclevcn.com'
+opendistro_cluster_name: wazuh
+elasticsearch_network_host: '0.0.0.0'
+elasticsearch_node_master: true
+elasticsearch_node_data: true
+elasticsearch_node_ingest: true
+elasticsearch_lower_disk_requirements: false
+
+# Override the role that we call and runs a cert generation that didn't work for us
+generate_certs: false
+local_certs_path: "/etc/ssl/local"
+
+# Instance file config
+# Keeping the ip mapping for future updates
+instances:
+  node1:
+    name: 'elasticnode0'
+#    ip: "{{ lookup('dig', 'elasticnode0.{{ domain_name }}')}}"
+  node2:
+    name: 'elasticnode1'
+#    ip: "{{ lookup('dig', 'elasticnode1.{{ domain_name }}')}}"
+  node3:
+    name: 'elasticnode2'
+#    ip: "{{ lookup('dig', 'elasticnode2.{{ domain_name }}')}}"
+
+elasticsearch_cluster_nodes:
+  - "{{ instances.node1.name }}.{{ domain_name }}"
+  - "{{ instances.node2.name }}.{{ domain_name }}"
+  - "{{ instances.node3.name }}.{{ domain_name }}"
+elasticsearch_discovery_nodes:
+  - "{{ instances.node1.name }}.{{ domain_name }}"
+  - "{{ instances.node2.name }}.{{ domain_name }}"
+  - "{{ instances.node3.name }}.{{ domain_name }}"
