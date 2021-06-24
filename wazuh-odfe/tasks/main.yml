@@ -1,0 +1,107 @@
+---
+- name: Install python-dns
+  package:
+    name: python-dns
+    state: latest # noqa package-latest
+
+- name: allow elasticsearch API traffic 9200/tcp
+  firewalld:
+    port: 9200/tcp
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: allow elasticsearch cluster traffic 9300-9400/tcp
+  firewalld:
+    port: 9300-9400/tcp
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: Create local temporary directory for certificates generation
+  file:
+    path: "{{ local_certs_path }}/certs"
+    mode: 0700
+    state: directory
+  
+- name: Prepare the certificates generation template file
+  template:
+    src: "templates/tlsconfig.yml.j2"
+    dest: "{{ local_certs_path }}/certs/{{ elasticsearch_node_name }}_elasticsearch_config_snippet.yml"
+    mode: 0644
+  register: tlsconfig_template
+
+- name: Check if admin-key.pem exists
+  stat:
+    path: "{{ local_certs_path }}/certs/admin-key.pem"
+  register: admin_key
+
+- name: Check if admin.csr exists
+  stat:
+    path: "{{ local_certs_path }}/certs/admin.csr"
+  register: admin_csr
+
+- name: Check if admin.pem exists
+  stat:
+    path: "{{ local_certs_path }}/certs/admin.pem"
+  register: admin_pem
+
+- name: Generate temporary key
+  command: >-
+    openssl genrsa -out {{ local_certs_path }}/certs/{{ item }}-key-temp.pem 2048
+  when:
+    - not admin_key.stat.exists
+    - tlsconfig_template.changed
+  with_items:
+    - "{{ elasticsearch_node_name }}"
+    - "{{ elasticsearch_node_name }}_http"
+    - admin
+
+- name: Generate key in correct format
+  command: >-
+    openssl pkcs8 -inform PEM -outform PEM
+    -in {{ local_certs_path }}/certs/{{ item }}-key-temp.pem
+    -topk8
+    -nocrypt
+    -v1 PBE-SHA1-3DES
+    -out {{ local_certs_path }}/certs/{{ item }}.key
+  with_items:
+    - "{{ elasticsearch_node_name }}"
+    - "{{ elasticsearch_node_name }}_http"
+    - admin
+  when:
+    - not admin_key.stat.exists
+    - tlsconfig_template.changed
+
+- name: Generate the csr
+  command: >-
+    openssl req -new
+    -key {{ local_certs_path }}/certs/{{ item }}.key
+    -out {{ local_certs_path }}/certs/{{ item }}.csr
+    -subj "/CN={{ item }}/OU=Ops/O={{ domain_name }}\, Inc./DC={{ domain_name }}"
+  with_items:
+    - "{{ elasticsearch_node_name }}"
+    - "{{ elasticsearch_node_name }}_http"
+    - admin
+  when:
+    - not admin_csr.stat.exists
+    - tlsconfig_template.changed
+
+- name: Generate pem
+  command: >-
+    openssl x509 -req
+    -in {{ local_certs_path }}/certs/{{ item }}.csr
+    -CA {{ local_certs_path }}/certs/root-ca.pem
+    -CAkey {{ local_certs_path }}/certs/root-ca.key
+    -CAcreateserial -sha256
+    -out {{ local_certs_path }}/certs/{{ item }}.pem
+    -days 365
+  with_items:
+    - "{{ elasticsearch_node_name }}"
+    - "{{ elasticsearch_node_name }}_http"
+    - admin
+  when:
+    - not admin_pem.stat.exists
+    - tlsconfig_template.changed
