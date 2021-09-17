@@ -17,18 +17,13 @@ A list of other roles hosted on Galaxy:
 A list of other roles hosted on Github:
 * [oci-rsa-ansible-base](pending...): Installs base packages and sets configuration for general security, montoring, and auditing purposes.
 
-
-## Branches
-* `main` branch contains the latest code.
-
-## Documentation
-
-* [Wazuh Ansible documentation](https://documentation.wazuh.com/current/deploying-with-ansible/index.html)
-* [Full documentation](http://documentation.wazuh.com)
-
 ## Code style
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/oracle-quickstart) 
+
+## Branches
+
+* `main` branch contains the latest code.
 
 ## Usage
 Launching the playbook
@@ -36,6 +31,11 @@ Launching the playbook
 ```
 ansible-playbook -i localhost, $OCI_RSA_BASE/${playbook_name}/main.yml --connection=local
 ```
+
+## Documentation
+
+* [Wazuh Ansible documentation](https://documentation.wazuh.com/current/deploying-with-ansible/index.html)
+* [Full documentation](http://documentation.wazuh.com)
 
 ## How to Contribute
 Interested in contributing?  See our contribution [guidelines](CONTRIBUTE.md) for details.

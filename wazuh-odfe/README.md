@@ -51,7 +51,7 @@ Certificate generation is set to false becuase it is done locally whithin the wa
       - "{{ instances.node1.name }}.{{ domain_name }}"
       - "{{ instances.node2.name }}.{{ domain_name }}"
       - "{{ instances.node3.name }}.{{ domain_name }}"
-Instance file config. Keeping the ip mapping for future updates
+Instance file config. Sets ip mapping and node domain names.
 
 Dependencies
 ---------------
@@ -62,6 +62,7 @@ Example Playbook
 ----------------
 Use the RSA-Ansible-Base role before to install required software. An extra-variables.yml file can also be used to pass in other variables.
 
+```
 - hosts: all
   vars_files:
     - ../extra-variables.yml
@@ -69,7 +70,7 @@ Use the RSA-Ansible-Base role before to install required software. An extra-vari
     - role: oci-rsa-ansible-base
     - role: wazuh-odfe
       become: true
-
+```
 
 License
 -------
