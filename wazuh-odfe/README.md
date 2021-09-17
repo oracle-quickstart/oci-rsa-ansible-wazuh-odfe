@@ -5,7 +5,7 @@ Installs Open Distro for Elasticsearch. Used to deploy elastic nodes in a wazuh 
 
 Requirements
 ------------
-- ansible >= 2.11.0
+- [Ansible core](https://docs.ansible.com/ansible-core/devel/index.html) >= 2.11.0
 - Oracle Linux >= 7.9
 
 Role Variables
@@ -54,6 +54,7 @@ Certificate generation is set to false becuase it is done locally whithin the wa
 Instance file config. Keeping the ip mapping for future updates
 
 Dependencies
+---------------
 
 None
 
