@@ -1,12 +1,13 @@
-OCI-RSA-Ansible-ODFE
+OCI-RSA-ANSIBLE-ODFE
 =========
 
-Installs Open Distro for Elasticsearch. Used to deploy elastic nodes in a wazuh cluster.
+Installs [Open Distro for Elasticsearch](https://opendistro.github.io/for-elasticsearch/). 
+Used to deploy elasticsearch nodes in a wazuh cluster.
 
 Requirements
 ------------
 - [Ansible core](https://docs.ansible.com/ansible-core/devel/index.html) >= 2.11.0
-- Oracle Linux >= 7.9
+- [Oracle Autonomous Linux](https://www.oracle.com/linux/autonomous-linux/) >= 7.9
 
 Role Variables
 --------------

@@ -1,4 +1,4 @@
-# Contributing to OCI RSA Ansible Wazuh ODFE Playbook
+# Contributing to OCI-RSA-ANSIBLE-WAZUH-ODFE Playbook
 
 Oracle welcomes contributions to this repository from anyone.
 
