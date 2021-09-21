@@ -11,10 +11,11 @@ Requirements
 
 Role Variables
 --------------
+Open distro for elastic search version
 
     opendistro_version: 1.13.2
 
-Open distro for elastic search version
+Configure elastic cluster node network settings. The domain_name variable refers to the subnet domain name.
 
     single_node: false
     elasticsearch_node_name: '{{ ansible_fqdn }}'
@@ -26,12 +27,12 @@ Open distro for elastic search version
     elasticsearch_node_ingest: true
     elasticsearch_lower_disk_requirements: false
 
-Configure elastic cluster node network settings. The domain_name variable refers to the subnet domain name.
+Certificate generation is set to false becuase it is done locally whithin the wazuh-odfe role
 
     generate_certs: false
     local_certs_path: "/etc/ssl/local"
 
-Certificate generation is set to false becuase it is done locally whithin the wazuh-odfe role
+Instance file config. Sets ip mapping and node domain names.
     
     instances:
       node1:
@@ -52,7 +53,6 @@ Certificate generation is set to false becuase it is done locally whithin the wa
       - "{{ instances.node1.name }}.{{ domain_name }}"
       - "{{ instances.node2.name }}.{{ domain_name }}"
       - "{{ instances.node3.name }}.{{ domain_name }}"
-Instance file config. Sets ip mapping and node domain names.
 
 Dependencies
 ---------------

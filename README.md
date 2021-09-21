@@ -51,6 +51,10 @@ Here the `playbook_zip` is `target_dir/playbook_name`
 ```
 tar -czf $playbook_zip $playbook_name
 ```
+Command to upload the tar file to object storage
+```
+oci os object put -ns $namespace -bn $bucketname --file $playbook_zip --name ${playbook_name}.tgz
+```
 
 After terraform provisions the instance, the bootstrapping script pulls the appropriate tar file from object store and runs the playbook.
 
