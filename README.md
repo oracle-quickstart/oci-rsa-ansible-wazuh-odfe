@@ -1,13 +1,15 @@
 
 ## OCI-RSA-ANSIBLE-ODFE
-This stack contains the [Wazuh](https://documentation.wazuh.com/current/index.html) cluster elastic search playbook, which automates the deployment and configuration of [Open Distro for Elasticsearch](https://opendistro.github.io/for-elasticsearch/) (ODFE) in a 3 node cluster.
+This stack contains the [Wazuh](https://documentation.wazuh.com/current/index.html) cluster elastic search playbook, 
+which automates the deployment and configuration of [Open Distro for Elasticsearch](https://opendistro.github.io/for-elasticsearch/) 
+(ODFE) in a 3 node cluster.
 
 ## Ansible Role: wazuh-odfe
 Detailed information on the wazuh-odfe role and role variables can be found [here](/wazuh-odfe/README.md). 
 
 ## Ansible Role: wazuh-ansible
-We are using <b>Galaxy</b> which provides pre-packaged units of work known to Ansible as roles and collections. Content 
-from roles and collections of the <b>wazuh-ansible</b> are referenced in oci-rsa-ansible-wazuh-odfe. This playbook installs and 
+We are using **Galaxy** which provides pre-packaged units of work known to Ansible as roles and collections. Content 
+from roles and collections of the **wazuh-ansible** are referenced in oci-rsa-ansible-wazuh-odfe. This playbook installs and 
 configures Wazuh agent and manager.
 
 ## Ansible Role: oci-rsa-ansible-base
@@ -22,11 +24,14 @@ Detailed information on the oci-rsa-ansible-base can be found [here](PLACEHOLDER
 A list of other roles hosted on Galaxy:
 
 * [geerlingguy.clamav](https://github.com/geerlingguy/ansible-role-clamav): Installs ClamAV on Linux server.
-* [wazuh-ansible](https://github.com/wazuh/wazuh-ansible): These playbooks install and configure Wazuh agent, manager and Elastic Stack
-    - [wazuh-opendistro-elasticsearch](https://github.com/wazuh/wazuh-ansible/tree/master/roles/opendistro/opendistro-elasticsearch) An Ansible Role that installs Open Distro for Elasticsearch.
+* [wazuh-ansible](https://github.com/wazuh/wazuh-ansible): These playbooks install and configure Wazuh agent, manager and 
+  Elastic Stack
+    - [wazuh-opendistro-elasticsearch](https://github.com/wazuh/wazuh-ansible/tree/master/roles/opendistro/opendistro-elasticsearch) 
+      An Ansible Role that installs Open Distro for Elasticsearch.
 
 A list of other roles hosted on Github:
-* [oci-rsa-ansible-base](PLACEHOLDER): Installs base packages and sets configuration for general security, montoring, and auditing purposes.
+* [oci-rsa-ansible-base](PLACEHOLDER): Installs base packages and sets configuration for general security, montoring, 
+  and auditing purposes.
 
 ## Branches
 
@@ -40,7 +45,8 @@ the OCI Object Storage bucket and then run the following command to configure ea
 ansible-playbook -i localhost, $OCI_RSA_BASE/${playbook_name}/main.yml --connection=local
 ```
 
-An `extra_variables.yml` file is required to set the variables below. Here the Wazuh password, Open Distro Kibana username and password can be set by the user.
+An `extra_variables.yml` file is required to set the variables below. Here the Wazuh password, Open Distro Kibana 
+username and password can be set by the user.
 ```
 opendistro_admin_password: "${}"
 opendistro_kibana_password: "${}"
