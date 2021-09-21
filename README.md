@@ -1,6 +1,7 @@
 
 ## OCI-RSA-ANSIBLE-ODFE
-This stack contains the [Wazuh](https://wazuh.com/) cluster elastic search playbook, which automates the deployment and configuration of [Open Distro for Elasticsearch](https://opendistro.github.io/for-elasticsearch/) (ODFE)  in a 3 node cluster.
+This stack contains the [Wazuh](https://documentation.wazuh.com/current/index.html) cluster elastic search playbook, which automates the deployment and configuration of [Open Distro for Elasticsearch](https://opendistro.github.io/for-elasticsearch/) (ODFE) in a 3 node cluster.
+
 
 ## Ansible Role: wazuh-odfe
 Detailed information on the wazuh-odfe role and role variables can be found [here](/wazuh-odfe/README.md). 
@@ -10,12 +11,12 @@ We are using <b>Galaxy</b> which provides pre-packaged units of work known to An
 from roles and collections of the <b>wazuh-ansible</b> are referenced in oci-rsa-ansible-wazuh-odfe. This playbook installs and 
 configures Wazuh agent and manager.
 
-## Ansible Role: oci-rsa-ansible-Base
+## Ansible Role: oci-rsa-ansible-base
 Detailed information on the oci-rsa-ansible-base can be found [here]().
 
 ## Requirements
 - [Ansible core](https://docs.ansible.com/ansible-core/devel/index.html) >= 2.11.0
-- Oracle Linux >= 7.9
+- [Oracle Autonomous Linux](https://www.oracle.com/linux/autonomous-linux/) >= 7.9
 
 ## Dependencies
 
@@ -42,15 +43,18 @@ Command to install the ansible roles
 ```
 ansible-galaxy install --ignore-certs -r requirements.yml -p ./.galaxy-roles
 ```
+
 Command to install the ansible collections
 ```
 ansible-galaxy collection install --ignore-certs -r requirements.yml -p ./.galaxy-collections
 ```
+
 Command to bundle up the playbook.
-Here the `playbook_zip` is `target_dir/playbook_name`
+Here the `playbook_zip` is `target_dir/playbook_name`.
 ```
 tar -czf $playbook_zip $playbook_name
 ```
+
 Command to upload the tar file to object storage
 ```
 oci os object put -ns $namespace -bn $bucketname --file $playbook_zip --name ${playbook_name}.tgz
@@ -73,6 +77,9 @@ opendistro_kibana_password: "${}"
 
 * [Wazuh Ansible documentation](https://documentation.wazuh.com/current/deploying-with-ansible/index.html)
 * [Full documentation](http://documentation.wazuh.com)
+
+## The Team
+This repository was developed by the Oracle OCI Regulatory Solutions and Automation(RSA) team.
 
 ## How to Contribute
 Interested in contributing?  See our contribution [guidelines](CONTRIBUTE.md) for details.
