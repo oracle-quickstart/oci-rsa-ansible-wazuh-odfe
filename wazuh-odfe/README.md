@@ -6,7 +6,7 @@ Used to deploy Elasticsearch nodes in a Wazuh cluster.
 
 Requirements
 ------------
-- [Ansible core](https://docs.ansible.com/ansible-core/devel/index.html) >= 2.11.0
+- [Ansible core](https://docs.ansible.com/ansible-core/devel/index.html) >= 2.9.x
 - [Oracle Autonomous Linux](https://www.oracle.com/linux/autonomous-linux/) >= 7.9
 
 Role Variables
