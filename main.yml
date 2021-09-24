@@ -7,7 +7,5 @@
       become: true
     - role: wazuh-odfe
       become: true
-    - role: geerlingguy.clamav
-      become: true
     - role: wazuh-ansible/wazuh-ansible/roles/opendistro/opendistro-elasticsearch
       become: true
