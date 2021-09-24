@@ -23,7 +23,6 @@ Detailed information on the oci-rsa-ansible-base can be found [here](PLACEHOLDER
 
 A list of other roles hosted on Galaxy:
 
-* [geerlingguy.clamav](https://github.com/geerlingguy/ansible-role-clamav): Installs ClamAV on Linux server.
 * [wazuh-ansible](https://github.com/wazuh/wazuh-ansible): These playbooks install and configure Wazuh agent, manager and 
   Elastic Stack
     - [wazuh-opendistro-elasticsearch](https://github.com/wazuh/wazuh-ansible/tree/master/roles/opendistro/opendistro-elasticsearch) 
