@@ -1,4 +1,5 @@
 ---
 # defaults file for oci-rsa-ansible-wazuh-odfe
 
-
+# Target for Wazuh agent registration
+registration_address: "wazuh-lb.wazuh-cluster.local"
