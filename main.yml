@@ -9,3 +9,8 @@
       become: true
     - role: wazuh-ansible/wazuh-ansible/roles/opendistro/opendistro-elasticsearch
       become: true
+    - role: wazuh-ansible/wazuh-ansible/roles/wazuh/ansible-wazuh-agent
+      become: true
+    - role: oci-rsa-ansible-base/wazuh_agent_configuration
+      become: true
+ 

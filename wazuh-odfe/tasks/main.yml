@@ -105,3 +105,12 @@
   when:
     - not admin_pem.stat.exists
     - tlsconfig_template.changed
+
+- name: Deploy fix for elasticsearch-plugin
+  template:
+    src: "templates/elasticsearch-plugin.j2"
+    dest: /usr/share/elasticsearch/bin/elasticsearch-plugin
+    owner: root
+    group: root
+    mode: '0755'
+  ignore_errors: yes
