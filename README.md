@@ -13,7 +13,7 @@ from roles and collections of the **wazuh-ansible** are referenced in oci-rsa-an
 configures Wazuh agent and manager.
 
 ## Ansible Role: oci-rsa-ansible-base
-Detailed information on the oci-rsa-ansible-base can be found [here](PLACEHOLDER)).
+Detailed information on the oci-rsa-ansible-base can be found [here](https://github.com/oracle-quickstart/oci-rsa-ansible-base)).
 
 ## Requirements
 - [Ansible core](https://docs.ansible.com/ansible-core/devel/index.html) >= 2.9.x
@@ -29,7 +29,7 @@ A list of other roles hosted on Galaxy:
       An Ansible Role that installs Open Distro for Elasticsearch.
 
 A list of other roles hosted on Github:
-* [oci-rsa-ansible-base](PLACEHOLDER): Installs base packages and sets configuration for general security, montoring, 
+* [oci-rsa-ansible-base](https://github.com/oracle-quickstart/oci-rsa-ansible-base): Installs base packages and sets configuration for general security, montoring, 
   and auditing purposes.
 
 ## Branches
